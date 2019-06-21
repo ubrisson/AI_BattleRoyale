@@ -24,11 +24,6 @@ class Player(ABC):
 
 class RandomPlayer(Player):
 
-    def __init__(self, behavior, id_player: int):
-        super().__init__(id_player)
-        if behavior == "R":
-            self.behavior = fullrandom.Random()
-
     def play(self, players: List[Player]):
-        self.behavior.play(self, players)
+        fullrandom.play(self, players)
         self.kills += 1
