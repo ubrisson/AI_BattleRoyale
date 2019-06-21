@@ -1,6 +1,6 @@
 from typing import List
 
-from src.player import RandomPlayer, Player
+from src.player import Player, DetDescPlayer
 
 
 class Game:
@@ -12,7 +12,7 @@ class Game:
     def init_players(nb_players: int) -> List[Player]:
         players = []
         for i in range(nb_players):
-            player = RandomPlayer(i)
+            player = DetDescPlayer(i)
             players.append(player)
         return players
 
