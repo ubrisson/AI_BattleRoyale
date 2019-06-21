@@ -1,4 +1,4 @@
-from engine import *
+from src.engine import *
 
 game = Game(100)
-game.runGame()
+game.run_game()

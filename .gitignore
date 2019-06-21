@@ -196,4 +196,4 @@ fabric.properties
 
 .gitignore
 .idea/
-behaviors/__pycache__/
+src/behaviors/__pycache__/
