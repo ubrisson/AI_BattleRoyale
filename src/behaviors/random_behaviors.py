@@ -13,5 +13,5 @@ def rand_kill(me: 'player.Player', targets: List['player.Player']):
 
 
 def rand_act(me: 'player.Player', targets: List['player.Player']):
-    if randint(1):
+    if randint(0, 1):
         rand_kill(me, targets)
