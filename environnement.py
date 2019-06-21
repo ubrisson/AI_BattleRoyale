@@ -9,8 +9,8 @@ class Board:
         self.board[k] = player
 
     def alive_players(self):
-        sortie = [player["id"] for player in self.board if player["alive"]]
+        sortie = [player_stats.id for player_stats in self.board if player_stats.alive]
         return sortie
 
-    def refresh_board(self, game):
-        self.board = [player.stats for player in game.players]
+    def refresh_board(self, players):
+        self.board = [player.stats() for player in players]

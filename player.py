@@ -1,6 +1,15 @@
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from typing import Optional
 
 from behaviors.random import Random
+
+
+@dataclass
+class PlayerStat:
+    id: int
+    kills: int
+    alive: bool
 
 
 class Player(ABC):
@@ -13,12 +22,12 @@ class Player(ABC):
     def play(self, board):
         pass
 
-    def stats(self):
-        return {
-            "id": self.id,
-            "kills": self.kills,
-            "alive": self.alive,
-        }
+    def stats(self) -> PlayerStat:
+        return PlayerStat(
+            id=self.id,
+            kills=self.kills,
+            alive=self.alive
+        )
 
 
 class RandomPlayer(Player):
@@ -28,6 +37,9 @@ class RandomPlayer(Player):
         if behavior == "R":
             self.behavior = Random()
 
-    def play(self, board) -> int:
-        targets = board.alive_players()
-        return self.behavior.play(targets)
+    def play(self, board) -> Optional[int]:
+        if self.alive:
+            targets = board.alive_players()
+            return self.behavior.play(targets)
+        else:
+            return
