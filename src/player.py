@@ -70,3 +70,13 @@ class DetDescPlayer(Player):
 
     def play(self, players: List[Player]):
         det.kill_desc(self, players)
+
+
+class BestKillPlayer(Player):
+
+    def __init__(self, id_player: int):
+        super().__init__(id_player)
+        self.behavior = "bestKill"
+
+    def play(self, players: List[Player]):
+        det.kill_best(self, players)

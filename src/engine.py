@@ -1,7 +1,8 @@
 from random import randint
 from typing import List
 
-from src.player import Player, DetDescPlayer, DetAscPlayer, RandKillPlayer, RandFullPlayer, IdlePlayer
+from src.player import Player, DetDescPlayer, DetAscPlayer, RandKillPlayer, \
+    RandFullPlayer, IdlePlayer, BestKillPlayer
 
 
 class Game:
@@ -12,8 +13,8 @@ class Game:
     def init_players(nb_players: int) -> List[Player]:
         players = []
         for i in range(nb_players):
-            r = randint(1, 5)
-            if r == 5:
+            r = randint(0, 5)
+            if r == 0:
                 players.insert(i, DetAscPlayer(i))
             elif r == 1:
                 players.insert(i, DetDescPlayer(i))
@@ -23,6 +24,8 @@ class Game:
                 players.insert(i, RandKillPlayer(i))
             elif r == 4:
                 players.insert(i, IdlePlayer(i))
+            elif r == 5:
+                players.insert(i, BestKillPlayer(i))
         return players
 
     def run_game(self) -> str:
