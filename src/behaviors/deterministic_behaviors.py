@@ -6,6 +6,9 @@ from src import player
 def kill_asc(me: 'player.Player', targets: List['player.Player']):
     my_index = targets.index(me)
     target = targets[my_index + 1] if my_index != len(targets) - 1 else targets[0]
+    while target is me:  # cas ou targets[0] is me
+        i = 1
+        target = targets[i + 1]
     target.killed = True
     me.kills += 1
 
@@ -13,5 +16,8 @@ def kill_asc(me: 'player.Player', targets: List['player.Player']):
 def kill_desc(me: 'player.Player', targets: List['player.Player']):
     my_index = targets.index(me)
     target = targets[my_index - 1] if my_index != 0 else targets[len(targets) - 1]
+    while target is me:  # cas ou targets[len(targets) - 1] is me
+        i = 2
+        target = targets[len(targets) - i]
     target.killed = True
     me.kills += 1

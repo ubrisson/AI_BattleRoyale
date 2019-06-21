@@ -1,3 +1,4 @@
+from random import randint
 from typing import List
 
 from src.player import Player, DetDescPlayer, DetAscPlayer, RandKillPlayer, RandFullPlayer, IdlePlayer
@@ -10,13 +11,18 @@ class Game:
     @staticmethod
     def init_players(nb_players: int) -> List[Player]:
         players = []
-        for i in range(nb_players // 20):
-            players.insert((i * 20), DetDescPlayer(i * 20))
-            players.insert((i * 20 + 1), DetAscPlayer(i * 20 + 1))
-            players.insert((i * 20 + 2), RandFullPlayer(i * 20 + 2))
-            players.insert((i * 20 + 3), RandKillPlayer(i * 20 + 3))
-            players.insert((i * 20 + 4), RandKillPlayer(i * 20 + 4))
-            players.insert((i * 20 + 5), IdlePlayer(i * 20 + 5))
+        for i in range(nb_players):
+            r = randint(1, 5)
+            if r == 5:
+                players.insert(i, DetAscPlayer(i))
+            elif r == 1:
+                players.insert(i, DetDescPlayer(i))
+            elif r == 2:
+                players.insert(i, RandFullPlayer(i))
+            elif r == 3:
+                players.insert(i, RandKillPlayer(i))
+            elif r == 4:
+                players.insert(i, IdlePlayer(i))
         return players
 
     def run_game(self) -> str:
