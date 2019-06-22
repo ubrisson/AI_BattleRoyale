@@ -1,8 +1,8 @@
-from random import randint
+
 from typing import List
 
-from src.player import Player, DetDescPlayer, DetAscPlayer, RandKillPlayer, \
-    RandFullPlayer, IdlePlayer, BestKillPlayer
+from src.behaviors.behaviors import Behavior, rand_behavior
+from src.player import Player, new_player
 
 
 class Game:
@@ -13,33 +13,22 @@ class Game:
     def init_players(nb_players: int) -> List[Player]:
         players = []
         for i in range(nb_players):
-            r = randint(0, 5)
-            if r == 0:
-                players.insert(i, DetAscPlayer(i))
-            elif r == 1:
-                players.insert(i, DetDescPlayer(i))
-            elif r == 2:
-                players.insert(i, RandFullPlayer(i))
-            elif r == 3:
-                players.insert(i, RandKillPlayer(i))
-            elif r == 4:
-                players.insert(i, IdlePlayer(i))
-            elif r == 5:
-                players.insert(i, BestKillPlayer(i))
+            behavior = rand_behavior()
+            players.append(new_player(behavior, i))
         return players
 
-    def run_game(self) -> str:
+    def run_game(self) -> Behavior:
         alive = self.alive_players()
-        while len(alive) > 10:
+        while len(alive) > 5:
             self.play()
             alive = self.alive_players()
         return self.end_game()
 
-    def end_game(self) -> str:
+    def end_game(self) -> Behavior:
         if len(self.alive_players()) != 0:
             return self.alive_players()[0].behavior
         else:
-            return "No Winner"
+            return Behavior.DEFAULT
 
     def play(self) -> None:
         alive_players = self.alive_players()
