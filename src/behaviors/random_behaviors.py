@@ -12,6 +12,6 @@ def rand_kill(me: 'player.Player', targets: List['player.Player']):
     me.kills += 1
 
 
-def rand_act(me: 'player.Player', targets: List['player.Player']):
-    if randint(0, 1):
+def rand_act(me: 'player.Player', targets: List['player.Player'], willpower: int = 50):
+    if randint(0, 100) <= willpower:
         rand_kill(me, targets)

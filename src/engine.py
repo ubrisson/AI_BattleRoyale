@@ -19,7 +19,7 @@ class Game:
 
     def run_game(self) -> Behavior:
         alive = self.alive_players()
-        while len(alive) > 5:
+        while len(alive) > 1 and self.game_isnt_idle(alive):
             self.play()
             alive = self.alive_players()
         return self.end_game()
@@ -43,3 +43,9 @@ class Game:
 
     def alive_players(self) -> List[Player]:
         return [player for player in self.players if player.alive]
+
+    def game_isnt_idle(self, alive):
+        for player in alive:
+            if player.behavior != Behavior.IDLE:
+                return True
+        return False

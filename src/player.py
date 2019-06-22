@@ -66,7 +66,7 @@ class IdlePlayer(Player):
         self.behavior = Behavior.IDLE
 
     def play(self, players: List[Player]):  # do nothing
-        a = 1
+        a = None
 
 
 class DetAscPlayer(Player):

@@ -13,5 +13,5 @@ class Behavior(Enum):
 
 
 def rand_behavior() -> Behavior:
-    r = randint(2, Behavior.DEFAULT.value) - 1
+    r = randint(1, Behavior.DEFAULT.value) - 1
     return list(Behavior)[r]
