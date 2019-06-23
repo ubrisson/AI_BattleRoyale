@@ -41,7 +41,9 @@ class Game:
             player.die()
 
     def alive_players(self) -> List[Player]:
-        return [player for player in self.players if player.alive]
+        leaderboard = [player for player in self.players if player.alive]
+        leaderboard.sort(key=lambda y: y.kills, reverse=True)
+        return leaderboard
 
     def game_isnt_idle(self, alive):
         for player in alive:

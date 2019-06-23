@@ -26,10 +26,14 @@ def kill_desc(me: 'player.Player', targets: List['player.Player']):
 def kill_best(me: 'player.Player', targets: List['player.Player']):
     max_kills = 0
     target = None
+    # target = max(targets, key=lambda y: y.kills)
+    # """
     for x in targets:
         if x.kills >= max_kills and x is not me:
             max_kills = x.kills
             target = x
+    # """
+    #target = targets[0] if targets[0] is not me else targets[1]
     if target is not None:
         target.killed = True
         me.kills += 1

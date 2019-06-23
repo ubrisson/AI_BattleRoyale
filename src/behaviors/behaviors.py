@@ -9,6 +9,7 @@ class Behavior(Enum):
     DETASC = auto()
     DETDESC = auto()
     KILLBEST = auto()
+    CUSTOM = auto()
 
 
 def rand_behavior() -> Behavior:

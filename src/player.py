@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-from src.behaviors import deterministic_behaviors as det
+from src.behaviors import deterministic_behaviors as det, custom
 from src.behaviors import random_behaviors as rd
 from src.behaviors.behaviors import Behavior
 
@@ -38,8 +38,8 @@ def new_player(behavior: Behavior, id_player: int) -> Player:
         return DetDescPlayer(id_player)
     elif behavior == Behavior.KILLBEST:
         return KillBestPlayer(id_player)
-    elif behavior == Behavior.DEFAULT:
-        return IdlePlayer(id_player)
+    elif behavior == Behavior.CUSTOM:
+        return CustomPlayer(id_player)
 
 
 class RandKillPlayer(Player):
@@ -97,3 +97,13 @@ class KillBestPlayer(Player):
 
     def play(self, players: List[Player]):
         det.kill_best(self, players)
+
+
+class CustomPlayer(Player):
+
+    def __init__(self, id_player: int):
+        super().__init__(id_player)
+        self.behavior = Behavior.CUSTOM
+
+    def play(self, players: List[Player]):
+        custom.kill(self, players)
