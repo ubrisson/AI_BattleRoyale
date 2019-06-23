@@ -1,5 +1,4 @@
-
-from typing import List
+from typing import List, Optional
 
 from src.behaviors.behaviors import Behavior, rand_behavior
 from src.player import Player, new_player
@@ -17,18 +16,18 @@ class Game:
             players.append(new_player(behavior, i))
         return players
 
-    def run_game(self) -> Behavior:
+    def run_game(self) -> Optional[Behavior]:
         alive = self.alive_players()
         while len(alive) > 1 and self.game_isnt_idle(alive):
             self.play()
             alive = self.alive_players()
         return self.end_game()
 
-    def end_game(self) -> Behavior:
+    def end_game(self) -> Optional[Behavior]:
         if len(self.alive_players()) != 0:
             return self.alive_players()[0].behavior
         else:
-            return Behavior.DEFAULT
+            return None
 
     def play(self) -> None:
         alive_players = self.alive_players()

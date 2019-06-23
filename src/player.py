@@ -12,7 +12,7 @@ class Player(ABC):
         self.kills: int = 0
         self.alive: bool = True
         self.killed: bool = False
-        self.behavior: Behavior = Behavior.DEFAULT
+        self.behavior: Behavior
 
     @abstractmethod
     def play(self, players: List["Player"]):
@@ -66,7 +66,7 @@ class IdlePlayer(Player):
         self.behavior = Behavior.IDLE
 
     def play(self, players: List[Player]):  # do nothing
-        a = None
+        pass
 
 
 class DetAscPlayer(Player):
