@@ -6,8 +6,8 @@ from src.behaviors.behaviors import Behavior
 from src.player import Player
 
 class RandActPlayer(Player):
-    def __init__(self, id_player: int):
-        super().__init__(id_player)
+    def __init__(self):
+        super().__init__()
         self.behavior = Behavior.RANDFULL
 
     def play(self, players: List[Player]):

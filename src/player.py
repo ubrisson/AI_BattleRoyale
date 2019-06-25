@@ -5,8 +5,10 @@ from src.behaviors.behaviors import Behavior
 
 
 class Player(ABC):
-    def __init__(self, id_player: int):
-        self.id: int = id_player
+    __last_id  = 0
+    def __init__(self):
+        self.id: int = Player.__last_id
+        Player.__last_id += 1
         self.kills: int = 0
         self.alive: bool = True
         self.killed: bool = False
@@ -23,8 +25,8 @@ class Player(ABC):
         return f" {self.id} : {self.kills}"
 
 class IdlePlayer(Player):
-    def __init__(self, id_player: int):
-        super().__init__(id_player)
+    def __init__(self):
+        super().__init__()
         self.behavior = Behavior.IDLE
 
     def play(self, players: List[Player]):  # do nothing

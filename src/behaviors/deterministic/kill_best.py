@@ -6,8 +6,8 @@ from src.player import Player
 
 class KillBestPlayer(Player):
 
-    def __init__(self, id_player: int):
-        super().__init__(id_player)
+    def __init__(self):
+        super().__init__()
         self.behavior = Behavior.KILLBEST
     def play(self, players: List[Player]):
         self.kill_best(players)

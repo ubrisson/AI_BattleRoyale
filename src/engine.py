@@ -64,16 +64,16 @@ class Game:
 
 def new_player(behavior: Behavior, id_player: int) -> Player:
     if behavior == Behavior.RANDFULL:
-        return RandActPlayer(id_player)
+        return RandActPlayer()
     elif behavior == Behavior.RANDKILL:
-        return RandKillPlayer(id_player)
+        return RandKillPlayer()
     elif behavior == Behavior.IDLE:
-        return IdlePlayer(id_player)
+        return IdlePlayer()
     elif behavior == Behavior.DETASC:
-        return DetAscPlayer(id_player)
+        return DetAscPlayer()
     elif behavior == Behavior.DETDESC:
-        return DetDescPlayer(id_player)
+        return DetDescPlayer()
     elif behavior == Behavior.KILLBEST:
-        return KillBestPlayer(id_player)
+        return KillBestPlayer()
     elif behavior == Behavior.CUSTOM:
-        return CustomPlayer(id_player)
+        return CustomPlayer()
