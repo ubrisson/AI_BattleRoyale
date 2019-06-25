@@ -1,7 +1,10 @@
 from typing import List, Optional
 
 from src.behaviors.behaviors import Behavior, rand_behavior
-from src.player import Player, new_player
+from src.behaviors.custom import CustomPlayer
+from src.behaviors.deterministic_behaviors import DetAscPlayer, DetDescPlayer, KillBestPlayer
+from src.behaviors.random_behaviors import RandFullPlayer, RandKillPlayer
+from src.player import Player, IdlePlayer
 
 
 class Game:
@@ -50,3 +53,20 @@ class Game:
             if player.behavior != Behavior.IDLE:
                 return True
         return False
+
+
+def new_player(behavior: Behavior, id_player: int) -> Player:
+    if behavior == Behavior.RANDFULL:
+        return RandFullPlayer(id_player)
+    elif behavior == Behavior.RANDKILL:
+        return RandKillPlayer(id_player)
+    elif behavior == Behavior.IDLE:
+        return IdlePlayer(id_player)
+    elif behavior == Behavior.DETASC:
+        return DetAscPlayer(id_player)
+    elif behavior == Behavior.DETDESC:
+        return DetDescPlayer(id_player)
+    elif behavior == Behavior.KILLBEST:
+        return KillBestPlayer(id_player)
+    elif behavior == Behavior.CUSTOM:
+        return CustomPlayer(id_player)

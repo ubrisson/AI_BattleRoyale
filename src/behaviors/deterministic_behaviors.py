@@ -1,9 +1,20 @@
 from typing import List
 
-from src import player
+from src.behaviors.behaviors import Behavior
+from src.player import Player
 
 
-def kill_asc(me: 'player.Player', targets: List['player.Player']):
+class DetAscPlayer(Player):
+
+    def __init__(self, id_player: int):
+        super().__init__(id_player)
+        self.behavior = Behavior.DETASC
+
+    def play(self, players: List[Player]):
+        kill_asc(self, players)
+
+
+def kill_asc(me: 'Player', targets: List['Player']):
     my_index = targets.index(me)
     target = targets[my_index + 1] if my_index != len(targets) - 1 else targets[0]
     while target is me:  # cas ou targets[0] is me
@@ -13,7 +24,17 @@ def kill_asc(me: 'player.Player', targets: List['player.Player']):
     me.kills += 1
 
 
-def kill_desc(me: 'player.Player', targets: List['player.Player']):
+class DetDescPlayer(Player):
+
+    def __init__(self, id_player: int):
+        super().__init__(id_player)
+        self.behavior = Behavior.DETDESC
+
+    def play(self, players: List[Player]):
+        kill_desc(self, players)
+
+
+def kill_desc(me: 'Player', targets: List['Player']):
     my_index = targets.index(me)
     target = targets[my_index - 1] if my_index != 0 else targets[len(targets) - 1]
     while target is me:  # cas ou targets[len(targets) - 1] is me
@@ -23,7 +44,17 @@ def kill_desc(me: 'player.Player', targets: List['player.Player']):
     me.kills += 1
 
 
-def kill_best(me: 'player.Player', targets: List['player.Player']):
+class KillBestPlayer(Player):
+
+    def __init__(self, id_player: int):
+        super().__init__(id_player)
+        self.behavior = Behavior.KILLBEST
+
+    def play(self, players: List[Player]):
+        kill_best(self, players)
+
+
+def kill_best(me: 'Player', targets: List['Player']):
     max_kills = 0
     target = None
     # target = max(targets, key=lambda y: y.kills)

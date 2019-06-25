@@ -1,10 +1,20 @@
 from typing import List
 
-from src import player
 from src.behaviors.behaviors import Behavior
+from src.player import Player
 
 
-def kill(me: 'player.Player', targets: List['player.Player']):
+class CustomPlayer(Player):
+
+    def __init__(self, id_player: int):
+        super().__init__(id_player)
+        self.behavior = Behavior.CUSTOM
+
+    def play(self, players: List[Player]):
+        kill(self, players)
+
+
+def kill(me: 'Player', targets: List['Player']):
     if len(targets) > 10 and game_isnt_idle(targets):
         pass
     else:
