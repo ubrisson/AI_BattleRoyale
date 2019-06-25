@@ -7,7 +7,7 @@ result = []
 start = t.time()
 
 # Each 1000 games takes 1.7 sec on my pc
-nb_games = 10000
+nb_games = 20000
 print(f"This shit's gonna run {nb_games} games for {0.0017 * nb_games} sec.")
 
 for i in range(nb_games):
