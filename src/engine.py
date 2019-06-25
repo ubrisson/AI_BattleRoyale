@@ -1,9 +1,16 @@
 from typing import List, Optional
 
 from src.behaviors.behaviors import Behavior, rand_behavior
-from src.behaviors.custom import CustomPlayer
-from src.behaviors.deterministic_behaviors import DetAscPlayer, DetDescPlayer, KillBestPlayer
-from src.behaviors.random_behaviors import RandActPlayer, RandKillPlayer
+
+# Deterministic
+from src.behaviors.deterministic.ascendent import DetAscPlayer
+from src.behaviors.deterministic.descendent import DetDescPlayer 
+from src.behaviors.deterministic.custom import CustomPlayer
+from src.behaviors.deterministic.kill_best import KillBestPlayer 
+
+# Random
+from src.behaviors.random.always_kill import RandKillPlayer
+from src.behaviors.random.sometimes_kill import RandActPlayer
 from src.player import Player, IdlePlayer
 
 
