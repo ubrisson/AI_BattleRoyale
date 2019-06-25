@@ -3,7 +3,7 @@ from typing import List, Optional
 from src.behaviors.behaviors import Behavior, rand_behavior
 from src.behaviors.custom import CustomPlayer
 from src.behaviors.deterministic_behaviors import DetAscPlayer, DetDescPlayer, KillBestPlayer
-from src.behaviors.random_behaviors import RandFullPlayer, RandKillPlayer
+from src.behaviors.random_behaviors import RandActPlayer, RandKillPlayer
 from src.player import Player, IdlePlayer
 
 
@@ -57,7 +57,7 @@ class Game:
 
 def new_player(behavior: Behavior, id_player: int) -> Player:
     if behavior == Behavior.RANDFULL:
-        return RandFullPlayer(id_player)
+        return RandActPlayer(id_player)
     elif behavior == Behavior.RANDKILL:
         return RandKillPlayer(id_player)
     elif behavior == Behavior.IDLE:
