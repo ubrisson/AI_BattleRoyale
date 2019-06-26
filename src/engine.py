@@ -1,9 +1,16 @@
 from typing import List, Optional
 
 from src.behaviors.behaviors import Behavior, rand_behavior
-from src.behaviors.custom import CustomPlayer
-from src.behaviors.deterministic_behaviors import DetAscPlayer, DetDescPlayer, KillBestPlayer
-from src.behaviors.random_behaviors import RandFullPlayer, RandKillPlayer
+
+# Deterministic
+from src.behaviors.deterministic.ascendent import DetAscPlayer
+from src.behaviors.deterministic.descendent import DetDescPlayer 
+from src.behaviors.deterministic.custom import CustomPlayer
+from src.behaviors.deterministic.kill_best import KillBestPlayer 
+
+# Random
+from src.behaviors.random.always_kill import RandKillPlayer
+from src.behaviors.random.sometimes_kill import RandActPlayer
 from src.player import Player, IdlePlayer
 
 
@@ -57,16 +64,16 @@ class Game:
 
 def new_player(behavior: Behavior, id_player: int) -> Player:
     if behavior == Behavior.RANDFULL:
-        return RandFullPlayer(id_player)
+        return RandActPlayer()
     elif behavior == Behavior.RANDKILL:
-        return RandKillPlayer(id_player)
+        return RandKillPlayer()
     elif behavior == Behavior.IDLE:
-        return IdlePlayer(id_player)
+        return IdlePlayer()
     elif behavior == Behavior.DETASC:
-        return DetAscPlayer(id_player)
+        return DetAscPlayer()
     elif behavior == Behavior.DETDESC:
-        return DetDescPlayer(id_player)
+        return DetDescPlayer()
     elif behavior == Behavior.KILLBEST:
-        return KillBestPlayer(id_player)
+        return KillBestPlayer()
     elif behavior == Behavior.CUSTOM:
-        return CustomPlayer(id_player)
+        return CustomPlayer()
