@@ -16,13 +16,14 @@ from src.player import Player, IdlePlayer
 
 class Game:
     def __init__(self, nb_players: int):
-        self.players: List[Player] = self.init_players(nb_players)
+        self.players = []
+        self.init_players(nb_players)
 
     def init_players(self, nb_players: int) -> List[Player]:
         for i in range(nb_players):
             behavior = rand_behavior()
             self.add_new_player(behavior)
-
+            
     def run_game(self) -> Optional[Behavior]:
         alive = self.alive_players()
         while len(alive) > 1 and self.game_isnt_idle(alive):
@@ -62,7 +63,7 @@ class Game:
         if behavior == Behavior.RANDFULL:
             self.players.append(RandActPlayer())
         elif behavior == Behavior.RANDKILL:
-            self.players.appedn(RandKillPlayer())
+            self.players.append(RandKillPlayer())
         elif behavior == Behavior.IDLE:
             self.players.append(IdlePlayer())
         elif behavior == Behavior.DETASC:
