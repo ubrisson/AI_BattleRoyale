@@ -18,13 +18,10 @@ class Game:
     def __init__(self, nb_players: int):
         self.players: List[Player] = self.init_players(nb_players)
 
-    @staticmethod
-    def init_players(nb_players: int) -> List[Player]:
-        players = []
+    def init_players(self, nb_players: int) -> List[Player]:
         for i in range(nb_players):
             behavior = rand_behavior()
-            players.append(new_player(behavior, i))
-        return players
+            self.add_new_player(behavior)
 
     def run_game(self) -> Optional[Behavior]:
         alive = self.alive_players()
@@ -61,19 +58,18 @@ class Game:
                 return True
         return False
 
-
-def new_player(behavior: Behavior, id_player: int) -> Player:
-    if behavior == Behavior.RANDFULL:
-        return RandActPlayer()
-    elif behavior == Behavior.RANDKILL:
-        return RandKillPlayer()
-    elif behavior == Behavior.IDLE:
-        return IdlePlayer()
-    elif behavior == Behavior.DETASC:
-        return DetAscPlayer()
-    elif behavior == Behavior.DETDESC:
-        return DetDescPlayer()
-    elif behavior == Behavior.KILLBEST:
-        return KillBestPlayer()
-    elif behavior == Behavior.CUSTOM:
-        return CustomPlayer()
+    def add_new_player(self,behavior: Behavior) -> Player:
+        if behavior == Behavior.RANDFULL:
+            self.players.append(RandActPlayer())
+        elif behavior == Behavior.RANDKILL:
+            self.players.appedn(RandKillPlayer())
+        elif behavior == Behavior.IDLE:
+            self.players.append(IdlePlayer())
+        elif behavior == Behavior.DETASC:
+            self.players.append(DetAscPlayer())
+        elif behavior == Behavior.DETDESC:
+            self.players.append(DetDescPlayer())
+        elif behavior == Behavior.KILLBEST:
+            self.players.append(KillBestPlayer())
+        elif behavior == Behavior.CUSTOM:
+            self.players.append(CustomPlayer())
